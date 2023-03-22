@@ -40,11 +40,11 @@ app.get('/api/persons', (request, response) => {
     response.json(result)
   })
 })
-
+/*
 app.get('/info', (request, response) => {
   const date = new Date();
   response.send(`<p>Phonebook has info for ${persons.length} people</p><p>${date}</p>`)
-})
+})*/
 
 app.get('/api/persons/:id', (request, response, next) => {
   Person.findById(request.params.id)
@@ -72,7 +72,7 @@ app.get('/api/persons/:id', (request, response) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -101,7 +101,7 @@ app.post('/api/persons', (request, response, next) => {
   person.save().then(savedPerson => {
     response.json(savedPerson)
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
